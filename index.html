@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>포도알 티켓팅</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;800&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body{
+			color: #9999ff;
+			text-align: center;
+			font-size: 1.5em;
+			font-family: 'Hahmlet', serif;
+			}
+		#time{
+			color: black;
+			font-size: 3em;
+			line-height: 0.6;
+			font-family: 'Hahmlet', serif;}
+		.box{width: 10px; height: 10px; border-radius: 20%; position: absolute;	left: 100px; top: 100px; background: #9999ff;}
+		#game{
+			padding-top: 700px;
+		}
+		.absolute{display: block; position: absolute;}
+	</style>
+</head>
+<body>
+	<p>원하시는 좌석 위치를 선택해주세요.</p>
+	<div id=time></div>
+	<div id=game class="click absolute" style="top:170px; left:px;"></div>
+
+<script type="text/javascript">
+
+	setInterval(makeDate, 100);
+	makeDate();
+	function makeDate(){
+		var d = new Date();
+		var hours = d.getHours();
+		var minutes = d.getMinutes();
+		var seconds = d.getSeconds();
+		var milliseconds = d.getMilliseconds();
+
+		var output = hours + ":" + minutes + ":" + seconds + ":" + milliseconds;
+		
+		document.getElementById("time").innerHTML = output;
+	}
+
+	setInterval(makeBox, 1000);
+	makeBox(); 
+	function makeBox(){
+		var a = document.createElement("div");
+		a.id = "square";
+		a.className = "box";
+		var b = Math.random()*window.innerWidth;
+		var c = Math.random()*window.innerHeight;	
+		a.style.left = b + "px";
+		a.style.top = c + "px";	
+		a.onclick = function(){
+			a.parentNode.removeChild(a);
+			alert("이미 선택된 좌석입니다.")
+			
+		}
+		document.getElementById("game").appendChild(a);
+		console.log(window.innerWidth, window.innerHeight);
+	}
+		
+</script>
+</body>
+</html>
